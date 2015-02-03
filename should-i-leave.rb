@@ -33,6 +33,14 @@ class Forecast
     weather_data['minutely']['data'].map{|m| m.fetch('precipAccumulation', 0) * SCALING_FACTOR}
   end
 
+  def currentConditions
+    weather_data['currently']['summary']
+  end
+
+  def currentTemprature
+    weather_data['currently']['temperature']
+  end
+
   def alerts
     weather_data['alerts']
   end
@@ -41,6 +49,7 @@ end
 Clamp do
   def execute
     f = Forecast.new
+    puts "Its currently #{f.currentTemprature} and #{f.currentConditions}"
     puts "Precipitation"
     puts "\tProbability"
     puts Sparkr.sparkline f.precipProbability
