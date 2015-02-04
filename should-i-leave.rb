@@ -18,7 +18,7 @@ Clamp do
     puts "\tAccumulation"
     puts Sparkr.sparkline f.precipAccumulation
 
-    unless f.alerts.empty?
+    if f.alerts
       f.alerts.each do |a|
         puts a['title']
         puts "\t" + a['description'].split("\n").join("\n\t")
